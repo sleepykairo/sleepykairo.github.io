@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module" src="./app.js" defer></script>
+
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+    // NOTE - INCLUDE YOUR FIREBASE CONFIG HERE FOR ANYTHING TO WORK:
+    const firebaseConfig = {
+        apiKey: "AIzaSyA7UL8uTY8mU1CZYBDXbcEvd61AFm6460Y",
+        authDomain: "song-sleuth-7fc7b.firebaseapp.com",
+        databaseURL: "https://song-sleuth-7fc7b-default-rtdb.firebaseio.com",
+        projectId: "song-sleuth-7fc7b",
+        storageBucket: "song-sleuth-7fc7b.firebasestorage.app",
+        messagingSenderId: "643419298438",
+        appId: "1:643419298438:web:1c3fdce20cf356da5f4f07"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+
+<input type="file" id="lastfmDataInput">
+<button id="import">Import</button>
+<label for="result"></label><textarea id="result"></textarea>
+
+</body>
+</html>
