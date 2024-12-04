@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="module" src="./app.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyA7UL8uTY8mU1CZYBDXbcEvd61AFm6460Y",
+    authDomain: "song-sleuth-7fc7b.firebaseapp.com",
+    databaseURL: "https://song-sleuth-7fc7b-default-rtdb.firebaseio.com",
+    projectId: "song-sleuth-7fc7b",
+    storageBucket: "song-sleuth-7fc7b.firebasestorage.app",
+    messagingSenderId: "643419298438",
+    appId: "1:643419298438:web:1c3fdce20cf356da5f4f07"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<div id="inputs">
+  <input type="text" id="usernameInput" placeholder="Username">
+  <input type="file" id="fileInput" accept="text/csv">
+  <button id="startGame">Start Game</button>
+</div>
+
+</body>
+</html>

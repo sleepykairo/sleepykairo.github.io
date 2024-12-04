@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="module" src="./app.js" defer></script>
+    <script type="module" src="./lobby.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -23,9 +24,15 @@
     firebase.initializeApp(firebaseConfig);
 </script>
 
+<h1>Song Sleuth</h1>
 
-<input type="text" id="usernameInput" placeholder="Username">
-<!--<input type="file" id="fileInput" accept="text/csv">-->
+<div id="inputs">
+    <input type="text" id="usernameInput" placeholder="Username">
+    <button id="createLobby">Create lobby</button>
+    <br>
+    <input type="text" id="lobbyCodeInput" placeholder="Lobby code">
+    <button id="joinLobbyButton">Join lobby</button>
+</div>
 
 </body>
 </html>
