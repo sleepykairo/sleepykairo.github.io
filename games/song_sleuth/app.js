@@ -44,7 +44,7 @@ firebase.default.auth().onAuthStateChanged((user) => {
     if (user) {
         //logged in i think
         playerId = user.uid;
-        roomId = 7777;
+        roomId = localStorage.getItem("lobbyCode");
         console.log(`Room ID is ${roomId}`);
         console.log(`User connected with id ${playerId}`);
         playerRef = firebase.default.database().ref(`rooms/${roomId}/players/${playerId}`);

@@ -25,6 +25,7 @@ function init() {
 
     function joinLobby(code) {
         let lobbyRef = firebase.default.database().ref(`rooms/${code}/players/${playerId}`)
+        localStorage.setItem("lobbyCode", code);
 
         window.location.href = "./game.html";
         lobbyRef.set({
@@ -36,7 +37,11 @@ function init() {
     }
 
     function createLobby() {
-        let roomId = "7777";
+        let roomId;
+
+        roomId = Math.random().toFixed(4) * 10000;
+
+        localStorage.setItem("lobbyCode", roomId);
 
         let lobbyRef = firebase.default.database().ref(`rooms/${roomId}/players/${playerId}`);
 
