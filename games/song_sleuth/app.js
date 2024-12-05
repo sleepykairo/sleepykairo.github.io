@@ -36,24 +36,28 @@ function init() {
 
 function startGame() {
     correctPlayer = randomKeyFromDict(playerElements);
-    console.log(correctPlayer);
+    // console.log(correctPlayer);
 }
 
 firebase.default.auth().onAuthStateChanged((user) => {
-    console.log(user);
+    // console.log(user);
     if (user) {
         //logged in i think
         playerId = user.uid;
+        roomId = 7777;
+        console.log(`Room ID is ${roomId}`);
+        console.log(`User connected with id ${playerId}`);
         playerRef = firebase.default.database().ref(`rooms/${roomId}/players/${playerId}`);
 
-        playerRef.set({
-            name: "Player",
-            id: playerId,
-            ready: false,
-        })
+        // playerRef.set({
+        //     name: "Player",
+        //     id: playerId,
+        //     ready: false,
+        // })
+
         playerRef.onDisconnect().remove();
         playerRef.on("value", (snapshot) => {
-            console.log(snapshot.val());
+            // console.log(snapshot.val());
         })
 
         init();

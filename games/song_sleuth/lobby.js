@@ -6,6 +6,7 @@ let playerLobbyRef;
 function init() {
     let lobbyCodeInput = document.getElementById("lobbyCodeInput");
     let lobbyCodeButton = document.getElementById("joinLobbyButton");
+    let createLobbyButton = document.getElementById("createLobbyButton");
     lobbyCodeButton.addEventListener("click", (event) => {
         firebase.default.database().ref(`rooms/${lobbyCodeInput.value}`).on('value', (snapshot) => {
             if (snapshot.exists() && lobbyCodeInput.value !== "" && lobbyCodeInput.value !== "lobby") {
@@ -14,6 +15,11 @@ function init() {
             } else {
                 console.log(`Room ${lobbyCodeInput.value} is NOT valid`);
             }
+        })
+    })
+    createLobbyButton.addEventListener("click", (event) => {
+        firebase.default.database().ref(`rooms/${lobbyCodeInput.value}`).on('value', (snapshot) => {
+            createLobby();
         })
     })
 
@@ -25,17 +31,21 @@ function init() {
             name: "Player",
             id: playerId,
             host: false,
+            roomId: code,
         })
     }
 
-    function createLobby(code) {
-        let lobbyRef = firebase.default.database().ref(`rooms/${code}/players/${playerId}`)
+    function createLobby() {
+        let roomId = "7777";
+
+        let lobbyRef = firebase.default.database().ref(`rooms/${roomId}/players/${playerId}`);
 
         window.location.href = "./game.html";
         lobbyRef.set({
             name: "Player",
             id: playerId,
             host: true,
+            roomId: roomId,
         })
     }
 }
