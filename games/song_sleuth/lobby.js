@@ -7,6 +7,7 @@ function init() {
     let lobbyCodeInput = document.getElementById("lobbyCodeInput");
     let lobbyCodeButton = document.getElementById("joinLobbyButton");
     let createLobbyButton = document.getElementById("createLobbyButton");
+    let usernameInput = document.getElementById("usernameInput");
     lobbyCodeButton.addEventListener("click", (event) => {
         firebase.default.database().ref(`rooms/${lobbyCodeInput.value}`).on('value', (snapshot) => {
             if (snapshot.exists() && lobbyCodeInput.value !== "" && lobbyCodeInput.value !== "lobby") {
@@ -18,40 +19,63 @@ function init() {
         })
     })
     createLobbyButton.addEventListener("click", (event) => {
-        firebase.default.database().ref(`rooms/${lobbyCodeInput.value}`).on('value', (snapshot) => {
-            createLobby();
-        })
+        // firebase.default.database().ref(`rooms/${lobbyCodeInput.value}`).on('value', (snapshot) => {
+        //     // createLobby();
+        // }) why
+        console.log("createLobbyButton clicked");
+        createLobby();
+    })
+    usernameInput.addEventListener("change", (event) => {
+        console.log(usernameInput.value);
     })
 
     function joinLobby(code) {
         let lobbyRef = firebase.default.database().ref(`rooms/${code}/players/${playerId}`)
         localStorage.setItem("lobbyCode", code);
 
-        window.location.href = "./game.html";
         lobbyRef.set({
-            name: "Player",
+            name: usernameInputValue(),
             id: playerId,
             host: false,
             roomId: code,
         })
+        window.location.href = "./game.html";
     }
 
     function createLobby() {
         let roomId;
 
-        roomId = Math.random().toFixed(4) * 10000;
+        //thanks erik.onarheim :DDDD
+        function random4Captials() {
+            const alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            return alpha[Math.floor(Math.random() * 26)] +
+                alpha[Math.floor(Math.random() * 26)] +
+                alpha[Math.floor(Math.random() * 26)] +
+                alpha[Math.floor(Math.random() * 26)]
+        }
+
+        roomId = random4Captials();
 
         localStorage.setItem("lobbyCode", roomId);
 
         let lobbyRef = firebase.default.database().ref(`rooms/${roomId}/players/${playerId}`);
 
-        window.location.href = "./game.html";
         lobbyRef.set({
-            name: "Player",
+            name: usernameInputValue(),
             id: playerId,
             host: true,
             roomId: roomId,
         })
+        window.location.href = "./game.html";
+        // console.log("called createLobby()");
+    }
+
+    function usernameInputValue() {
+        console.log(usernameInput.value);
+        if (usernameInput.value === "") {
+            return "Player";
+        }
+        return usernameInput.value;
     }
 }
 

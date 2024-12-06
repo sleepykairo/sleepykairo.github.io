@@ -68,15 +68,15 @@ firebase.default.auth().onAuthStateChanged((user) => {
 
 firebase.default.auth().signInAnonymously().catch(error => console.log(error.code, error.message));
 
-var usernameInput = document.getElementById("usernameInput");
-usernameInput.addEventListener("change", () => {
-    playerRef.set({
-        name: usernameInput.value,
-        id: playerId,
-        ready: false,
-    });
-    playerElements[playerId].textContent = usernameInput.value;
-});
+// var usernameInput = document.getElementById("usernameInput");
+// usernameInput.addEventListener("change", () => {
+//     playerRef.set({
+//         name: usernameInput.value,
+//         id: playerId,
+//         ready: false,
+//     });
+//     playerElements[playerId].textContent = usernameInput.value;
+// });
 
 var fileInput = document.getElementById("fileInput");
 fileInput.addEventListener("change", () => {
